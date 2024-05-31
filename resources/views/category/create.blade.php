@@ -1,4 +1,5 @@
-@extends('layouts.app')
+<p>Create de categoria</p>
+{{-- @extends('layouts.app') 
 
 @section('title', 'Create')
 
@@ -11,3 +12,4 @@
 @section('content')
     <p>Añadir post</p>
 @endsection
+--}}

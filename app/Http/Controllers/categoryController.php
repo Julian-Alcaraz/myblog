@@ -2,27 +2,66 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-  public function getShow($id)
+  /**
+   * Display a listing of the resource.
+   */
+  public function index()
   {
-    return view('category/show', ['id' => $id]);
+    return view('category/index');
   }
 
-  public function getEdit($id)
-  {
-    return view('category/edit', ['id' => $id]);
-  }
-
-  public function getCreate()
+  /**
+   * Show the form for creating a new resource.
+   */
+  public function create()
   {
     return view('category/create');
   }
 
-  public function getIndex()
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function store(Request $request)
   {
-    return view('category/index');
+    //
+  }
+
+  /**
+   * Display the specified resource.
+   */
+  public function show(Post $post)
+  {
+    return "show";
+    //return view('category/show', ['id' => $post]);
+  }
+
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(Post $post)
+  {
+    return "edit";
+    //return view('category/edit', ['id' => $post]);
+  }
+
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(Request $request, Post $post)
+  {
+    //
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function destroy(Post $post)
+  {
+    //
   }
 }

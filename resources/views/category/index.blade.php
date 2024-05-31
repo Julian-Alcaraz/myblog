@@ -1,4 +1,5 @@
-@extends('layouts.app')
+<p>Index de categorias</p>
+{{-- @extends('layouts.app')
 
 @section('title', 'Category')
 
@@ -10,4 +11,4 @@
 
 @section('content')
 <p>Listado de categorías</p>
-@endsection
+@endsection --}}

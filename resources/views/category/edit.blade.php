@@ -1,3 +1,5 @@
+<p>edit de categorias con id: <?php echo $id;?></p>
+{{-- 
 @extends('layouts.app')
 
 @section('title', 'Edit')
@@ -8,5 +10,6 @@
 @endsection
 
 @section('content')
-    <p>Editar post con id <?php echo $id; ?></p>
+    <p>Editar post con id <?php //echo $id; ?></p>
 @endsection
+ --}}

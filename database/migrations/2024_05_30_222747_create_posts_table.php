@@ -4,6 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/*
+
+id Autoincremental
+title String
+poster String
+Habilitated Booleano por defecto: false
+content Text
+timestamps Timestamps de Eloquent
+
+*/
 return new class extends Migration
 {
     /**
@@ -12,9 +22,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('airline');
+            $table->id('idPost');
+            $table->string('titlePost', length: 100);
+            $table->string('poster'); // idUsuarioPoster ?
+            $table->text('contentPost'); 
+            $table->boolean('habilitated')->default(false);
             $table->timestamps();
         });
     }

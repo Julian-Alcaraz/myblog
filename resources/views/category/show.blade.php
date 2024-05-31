@@ -1,4 +1,5 @@
-@extends('layouts.app')
+<p>Show de categoria con post id: <?php echo $id;?>
+{{-- @extends('layouts.app') 
 
 @section('title', 'Category show')
 
@@ -8,5 +9,6 @@
 @endsection
 
 @section('content')
-    <p>Vista detalle del post con id <?php echo $id;?></p>
+    <p>Vista detalle del post con id <?php //echo $id;?></p>
 @endsection
+--}}
