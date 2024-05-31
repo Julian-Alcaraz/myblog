@@ -1,14 +1,11 @@
-<p>Show de categoria con post id: <?php echo $id;?>
-{{-- @extends('layouts.app') 
-
-@section('title', 'Category show')
-
-@section('sidebar')
-    @parent
-    <p>This is appended to the master sidebar.</p>
-@endsection
-
-@section('content')
-    <p>Vista detalle del post con id <?php //echo $id;?></p>
-@endsection
---}}
+<x-app-layout>
+  <div class="py-12">
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+              <div class="p-6 text-gray-900 dark:text-gray-100">
+                  {{ __(' Show ') }}
+              </div>
+          </div>
+      </div>
+  </div>
+</x-app-layout>

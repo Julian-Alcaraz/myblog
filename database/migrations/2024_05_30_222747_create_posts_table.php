@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('poster'); // idUsuarioPoster ?
             $table->text('contentPost'); 
             $table->boolean('habilitated')->default(false);
+            //$table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
