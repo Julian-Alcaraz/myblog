@@ -18,9 +18,10 @@ class PostFactory extends Factory
   {
     return [
       'titlePost' => fake()->realText(50),
-      'poster' => fake()->realText(20),
       'contentPost' => fake()->realText(200),
-      'habilitated' => 1,
+      //'habilitated' => 1,
+      'idCategory' => 1,
+      'idUserPoster' => 1,
     ];
   }
 }

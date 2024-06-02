@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                  <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
+                  <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')">
                       {{ __('Ver posts') }}
                   </x-nav-link>
               </div>
