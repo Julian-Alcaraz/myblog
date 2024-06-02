@@ -20,8 +20,8 @@ class PostFactory extends Factory
       'titlePost' => fake()->realText(50),
       'contentPost' => fake()->realText(200),
       //'habilitated' => 1,
-      'idCategory' => 1,
-      'idUserPoster' => 1,
+      'idCategory' => random_int(1,2),
+      'idUserPoster' => random_int(1,2),
     ];
   }
 }
