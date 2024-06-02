@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
   /**
    * Display a listing of the resource.
-   * 
-   * CONSIGNA:
-   * | Modificar el método "index" para que obtenga toda la lista de posts desde la base de datos
-   * | usando el modelo Post y que se la pase a la vista
    */
   public function index()
   {
-    $posts = Post::query()->paginate();
-    return view('category.index', ['posts' => $posts]);
+    $categories = Category::all();
+    return view('category.index', compact('categories'));
   }
 
   /**
@@ -27,30 +23,23 @@ class CategoryController extends Controller
   {
     return view('category.create');
   }
-  
+
   /**
    * Show the form for editing the specified resource.
-   * 
-   * CONSIGNA: 
-   * | Modificar el método "edit" para que obtenga el post pasado por parámetro usando el
-   * | método findOrFail y se la pase a la vista.
    */
-  public function edit(Post $post)
+  public function edit($id)
   {
-    //return "category edit";
-    return view('category.edit', ['post' => $post]);
+    $category = Category::findOrFail($id);
+    return view('category.edit', compact('category'));
   }
 
   /**
    * Display the specified resource.
-   * 
-   * CONSIGNA:
-   * | Modificar el método "show" para que obtenga el post pasado
-   * | por parámetro usando el método findOrFail y se la pase a la vista.
    */
-  public function show(Post $post)
+  public function show($id)
   {
-    return view('category.show', ['post' => $post]);
+    $category = Category::findOrFail($id);
+    return view('category.show', compact('category'));
   }
 
   /**
@@ -58,22 +47,36 @@ class CategoryController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $request->validate([
+      'nameCategory' => 'required',
+    ]);
+    Category::create($request->all());
+    return redirect()->route('category.index')
+      ->with('success', 'Categoria creada con éxito.');
   }
-  
+
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Post $post)
+  public function update(Request $request, $id)
   {
-    //
+    $request->validate([
+      'nameCategory' => 'required|max:100',
+    ]);
+    $category = Category::find($id);
+    $category->update($request->all());
+    return redirect()->route('category.index')
+      ->with('success', 'Categoria actualizada con éxito.');
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Post $post)
+  public function destroy($id)
   {
-    //
+    $category = Category::find($id);
+    $category->delete();
+    return redirect()->route('category.index')
+      ->with('success', 'Categoria eliminada con éxito.');
   }
 }
