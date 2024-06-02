@@ -10,7 +10,7 @@ class PostController extends Controller
 {
   /**
    * Muestra SOLO los post habilitados = 1
-   * 
+   *
    * CONSIGNA:
    * | Modificar el método "index" para que obtenga toda la lista de posts desde la base de datos
    * | usando el modelo Post y que se la pase a la vista
@@ -33,8 +33,8 @@ class PostController extends Controller
 
   /**
    * Show the form for editing the specified resource.
-   * 
-   * CONSIGNA: 
+   *
+   * CONSIGNA:
    * | Modificar el método "edit" para que obtenga el post pasado por parámetro usando el
    * | método findOrFail y se la pase a la vista.
    */
@@ -46,7 +46,7 @@ class PostController extends Controller
 
   /**
    * Muestra todos los post que estan habilitados.
-   * 
+   *
    * CONSIGNA:
    * | Modificar el método "show" para que obtenga el post pasado
    * | por parámetro usando el método findOrFail y se la pase a la vista.
@@ -113,6 +113,7 @@ class PostController extends Controller
   /**
    * No se si esta bien esto aca FEO
    */
+//   segun juli esto es de ProfilleController ( seria la ruta de los usuarios) y para poder utilizarlo se deberia llamar aa la ruta en el front, la ruta que llame a esto esta creada en web.php
   public function returnUser($id)
   {
     // Encuentra el post por su ID

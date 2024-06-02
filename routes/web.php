@@ -22,5 +22,8 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('category', CategoryController::class);
 Route::resource('post', PostController::class);
-
+// pruebas juli
+// Route::group(function (){
+//     Route::get('/user',[ProfileController::class, 'returnUser'])->name('user.get');
+// });
 require __DIR__.'/auth.php';
