@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Role;
+use App\Models\Menu;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,22 +17,45 @@ class DatabaseSeeder extends Seeder
    */
   public function run(): void
   {
-    // User::factory(10)->create();
-
+    // Roles
+    Role::factory()->create([
+      'nameRole' => 'Usuario',
+    ]);
+    Role::factory()->create([
+      'nameRole' => 'Moderador',
+    ]);
+    Role::factory()->create([
+      'nameRole' => 'Admin',
+    ]);
+    // Usuarios
+    // Rol: Por defecto 1 (usuario)
     User::factory()->create([
-      'id' => 1,
-      'name' => 'TestUser',
+      'name' => 'usuario',
+      'email' => 'u@u.com',
+      'password' => bcrypt('u'),
+    ]);
+    // Rol: Moderador
+    User::factory()->create([
+      'name' => 'moderador',
+      'email' => 'm@m.com',
+      'password' => bcrypt('m'),
+      'idRole' => 2,
+    ]);
+    // Rol: Admin
+    User::factory()->create([
+      'name' => 'admin',
       'email' => 'a@a.com',
       'password' => bcrypt('a'),
+      'idRole' => 3,
     ]);
-    User::factory()->create([
-        'id' => 2,
-        'name' => 'SecondUser',
-        'email' => 'b@b.com',
-        'password' => bcrypt('b'),
-      ]);
-
     Category::factory(2)->create();
     Post::factory(10)->create();
+
+    // Toma parentId del valor por defecto (null)
+    // Toma el order del valor por defecto (0)
+    Menu::factory()->create([
+      'nameMenu' => 'Ver posts',
+      'urlMenu'=> '/posts',
+    ]);
   }
 }

@@ -17,14 +17,7 @@
                     <input type="text" class="form-input w-full" id="poster" name="poster"
                         value="{{ Auth::user()->name }}" required readonly>
                 </div>
-                {{-- CAMBIAR!!! 
-                <div class="mb-6">
-                    <label for="idCategory" class="block text-white text-sm font-bold mb-2">IdCategory</label>
-                    <input class="form-textarea w-full" id="idCategory" name="idCategory" rows="3" required>
-                </div>
-                --}}
-                {{-- Es buena idea pero le falta valor a $categories --}}
-
+                {{-- CAMBIAR, si hacemos que filtre por categoiras anteriormente, no hace falta pedir categoria aca, deberia ser automatico --}}
                 <div class="mb-6">
                     <label for="idCategory" class="block text-white text-sm font-bold mb-2">Categoría</label>
                     <select class="form-select w-full" id="idCategory" name="idCategory" required>
@@ -34,8 +27,6 @@
                         @endforeach
                     </select>
                 </div>
-                
-                {{-- CAMBIAR!!! --}}
                 <div class="flex items-center justify-center">
                     <button type="submit"
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">

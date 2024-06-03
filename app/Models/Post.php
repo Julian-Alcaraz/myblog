@@ -14,10 +14,10 @@ class Post extends Model
     'titlePost',
     'contentPost',
     'habilitated',
-    'idCategory', // CAMBIAR!!!???
+    'idCategory', // VER!!!
     'idUserPoster', // !!!
   ];
-  // Para que laravel lo tome como booleano:
+  // Para que lo tome como boolean
   protected $casts = [
     'habilitated' => 'boolean',
   ];

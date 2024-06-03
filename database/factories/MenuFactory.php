@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Menu>
  */
-class PostFactory extends Factory
+class MenuFactory extends Factory
 {
   /**
    * Define the model's default state.
@@ -17,11 +17,11 @@ class PostFactory extends Factory
   public function definition(): array
   {
     return [
-      'titlePost' => fake()->realText(50),
-      'contentPost' => fake()->realText(200),
+      'nameMenu' => fake()->realText(10),
+      'urlMenu' => fake()->realText(20),
       'habilitated' => 1,
-      'idCategory' => random_int(1,2),
-      'idUserPoster' => random_int(1,2),
+      'parentId' => null,
+      'order' => 0,
     ];
   }
 }

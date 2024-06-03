@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id('idCategory');
-            $table->string('nameCategory');
-            $table->boolean('habilitated')->default(1); // Distinto a la consigna!!!
+            $table->string('nameCategory', 30);
+            $table->boolean('habilitated')->default(1);;
             $table->timestamps();
         });
     }

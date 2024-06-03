@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Role extends Model
 {
   use HasFactory;
-  protected $table = 'categories';
-  protected $primaryKey = 'idCategory';
+  protected $table = 'roles';
+  protected $primaryKey = 'idRole';
   protected $fillable = [
-    'nameCategory', 
+    'nameRole',
   ];
-  // Para que lo tome como boolean
   protected $casts = [
     'habilitated' => 'boolean',
   ];

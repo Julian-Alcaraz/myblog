@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Menu extends Model
 {
   use HasFactory;
-  protected $table = 'categories';
-  protected $primaryKey = 'idCategory';
+  protected $table = 'menus';
+  protected $primaryKey = 'idMenu';
   protected $fillable = [
-    'nameCategory', 
+    'nameMenu',
+    'urlMenu',
+    'order',
+    'parentId',
   ];
   // Para que lo tome como boolean
   protected $casts = [

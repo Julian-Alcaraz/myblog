@@ -5,6 +5,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -17,8 +18,10 @@ class PostController extends Controller
    */
   public function index()
   {
+    // Deberia mostrart todo, no solo habilitado
     // $colPosts = Post::all();
     $colPosts = Post::where('habilitated', 1)->get();
+    //$colUsuarios = User::get();
     return view('post.index', compact('colPosts'));
   }
 
@@ -40,8 +43,14 @@ class PostController extends Controller
    */
   public function edit(Post $post)
   {
-    $post = Post::findOrFail($post->idPost);
-    return view('post.edit', compact('post'));
+    if (Auth::check()) {
+      $post = Post::findOrFail($post->idPost);
+      return view('post.edit', compact('post'));
+    }
+    else
+    {
+      return view('dashboard');
+    }
   }
 
   /**
@@ -110,18 +119,11 @@ class PostController extends Controller
       ->with('success', 'Post deleted successfully');
   }
 
-  /**
-   * No se si esta bien esto aca FEO
-   */
-//   segun juli esto es de ProfilleController ( seria la ruta de los usuarios) y para poder utilizarlo se deberia llamar aa la ruta en el front, la ruta que llame a esto esta creada en web.php
-  public function returnUser($id)
-  {
-    // Encuentra el post por su ID
-    $post = Post::find($id);
-    // Accede al usuario que creó el post
-    $user = $post->user;
-    // Accede al nombre del usuario
-    $userName = $user->name; // Asumiendo que el modelo User tiene un campo 'name
-    return view('post.index', compact('post', 'userName'));
-  }
+
+    public function returnUser($colPosts)
+    {
+      //$colPosts = Post::where('habilitated', 1)->get();
+      $respuesta = "hola";
+      return view('post.index', compact('respuesta', 'colPosts'));
+    }
 }

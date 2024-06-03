@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -58,14 +59,10 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-
-
-    // public function returnUser(Request $request)
-    // {
-    //     $request->user()->
-    //   // Accede al nombre del usuario
-    //   $userName = $user->name; // Asumiendo que el modelo User tiene un campo 'name
-    //   return view('post.index', compact('post', 'userName'));
-    // }
-
+    public function returnUser($idPoster)
+    {
+      $objUsuarioBuscado = User::findOrFail($idPoster);
+      $nombreUsuario = $objUsuarioBuscado->name;
+      return $nombreUsuario;
+    }
 }

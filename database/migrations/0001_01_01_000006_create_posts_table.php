@@ -12,13 +12,13 @@ return new class extends Migration {
   {
     Schema::create('posts', function (Blueprint $table) {
       $table->id("idPost");
-      $table->string('titlePost', length: 100);
+      $table->string('titlePost', 100);
       $table->unsignedBigInteger('idUserPoster');
       $table->foreign('idUserPoster')->references('id')->on('users')->onDelete('cascade');
       $table->unsignedBigInteger('idCategory');
       $table->foreign('idCategory')->references('idCategory')->on('categories')->onDelete('cascade');
       $table->text('contentPost');
-      $table->boolean('habilitated')->default(1);// Distinto a la consigna!!!
+      $table->boolean('habilitated')->default(1);
       $table->timestamps();
     });
   }
