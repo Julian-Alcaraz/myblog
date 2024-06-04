@@ -16,4 +16,9 @@ class Role extends Model
   protected $casts = [
     'habilitated' => 'boolean',
   ];
+  // Relacion entre menu y rol
+  public function menus()
+  {
+      return $this->belongsToMany(Menu::class, 'menu_roles', 'idRole', 'idMenu')->withPivot('habilitated')->withTimestamps();
+  }
 }

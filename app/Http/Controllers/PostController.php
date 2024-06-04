@@ -6,7 +6,9 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+ 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 class PostController extends Controller
 {
   /**
@@ -18,24 +20,22 @@ class PostController extends Controller
    */
   public function index()
   {
-    // Deberia mostrart todo, no solo habilitado
-    // $colPosts = Post::all();
     $colPosts = Post::where('habilitated', 1)->get();
-    //$colUsuarios = User::get();
     return view('post.index', compact('colPosts'));
   }
 
   /**
-   * Show the form for creating a new resource.
+   * Muestra el formulario para crear un nuevo post
    */
   public function create()
   {
-    $colCategories = Category::all();
+    $colCategories = Category::all(); // RARO!!!
     return view('post.create', compact('colCategories'));
+    //return view('post.create');
   }
 
   /**
-   * Show the form for editing the specified resource.
+   * Muestra un formulario para editar un post
    *
    * CONSIGNA:
    * | Modificar el método "edit" para que obtenga el post pasado por parámetro usando el
@@ -43,14 +43,8 @@ class PostController extends Controller
    */
   public function edit(Post $post)
   {
-    if (Auth::check()) {
-      $post = Post::findOrFail($post->idPost);
-      return view('post.edit', compact('post'));
-    }
-    else
-    {
-      return view('dashboard');
-    }
+    $post = Post::findOrFail($post->idPost);
+    return view('post.edit', compact('post'));
   }
 
   /**
@@ -106,7 +100,7 @@ class PostController extends Controller
     $post->save();
 
     return redirect()->route('post.index')
-      ->with('success', 'Post disabled successfully');
+      ->with('success', 'Post borrado con éxito');
   }
 
   /**
@@ -119,11 +113,19 @@ class PostController extends Controller
       ->with('success', 'Post deleted successfully');
   }
 
+  public function returnUser($colPosts)
+  {
+    //$colPosts = Post::where('habilitated', 1)->get();
+    $respuesta = "hola";
+    return view('post.index', compact('respuesta', 'colPosts'));
+  }
 
-    public function returnUser($colPosts)
-    {
-      //$colPosts = Post::where('habilitated', 1)->get();
-      $respuesta = "hola";
-      return view('post.index', compact('respuesta', 'colPosts'));
+  public function esUserDuenioPost($userId, $idUserPoster)
+  {
+    $esDuenio = true;
+    if ($userId !== $idUserPoster) {
+      $esDuenio = false;
     }
+    return $esDuenio;
+  }
 }

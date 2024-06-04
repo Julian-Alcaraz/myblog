@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
@@ -83,4 +84,29 @@ class MenuController extends Controller
     return redirect()->route('menu.index')
       ->with('success', 'Menu eliminado  con éxito.');
   }
+
+  /**
+   * Busca menus habilitados = true segun un idrol y los ordena por el campo 'order'
+   */
+  public function buscarMenus($idRol)
+  {
+    $menus = Menu::whereHas('roles', function ($query) use ($idRol) {
+      $query->where('menu_roles.idRole', $idRol)
+        ->where('menu_roles.habilitated', 1);
+    })->where('menus.habilitated', 1)
+      ->orderBy('order')
+      ->get();
+
+    return $menus;
+  }
+
+  /**
+   * Busca los menus que son visibles para usuarios que no hayan iniciado sesion
+   */
+  public function buscarMenusPublicos()
+  {
+    $menus = Menu::where('idMenu', 1)->get();
+    return $menus;
+  }
 }
+

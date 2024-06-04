@@ -21,7 +21,7 @@ class PostFactory extends Factory
       'contentPost' => fake()->realText(200),
       'habilitated' => 1,
       'idCategory' => random_int(1,2),
-      'idUserPoster' => random_int(1,2),
+      'idUserPoster' => random_int(1,3),
     ];
   }
 }

@@ -22,7 +22,6 @@
                 <div class="p-4">
                     <p class="text-base">{{ $post->contentPost }}</p>
                 </div>
-                
                 <div class="bg-gray-700 px-4 py-2 rounded-b-lg">
                     <div class="flex justify-between">
                         <a href="{{ route('post.show', $post) }}"

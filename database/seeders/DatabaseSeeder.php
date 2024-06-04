@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Role;
 use App\Models\Menu;
+use App\Models\MenuRole;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -55,7 +57,52 @@ class DatabaseSeeder extends Seeder
     // Toma el order del valor por defecto (0)
     Menu::factory()->create([
       'nameMenu' => 'Ver posts',
-      'urlMenu'=> '/posts',
+      'urlMenu' => '/post',
     ]);
+    // Ver posts
+    MenuRole::factory()->create([
+      'idMenu' => '1',
+      'idRole'=> '1',
+    ]);
+    MenuRole::factory()->create([
+      'idMenu' => '1',
+      'idRole'=> '2',
+    ]);
+    MenuRole::factory()->create([
+      'idMenu' => '1',
+      'idRole'=> '3',
+    ]);
+    // Gestionar Roles
+    Menu::factory()->create([
+      'nameMenu' => 'Gestionar roles',
+      'urlMenu' => '/role',
+      'order' => 1,
+    ]);
+    MenuRole::factory()->create([
+      'idMenu' => '2',
+      'idRole'=> '3',
+    ]);
+    // Gestionar Usuarios
+    Menu::factory()->create([
+      'nameMenu' => 'Gestionar usuarios',
+      'urlMenu' => '/user',
+      'order' => 2,
+    ]);
+    MenuRole::factory()->create([
+      'idMenu' => '3',
+      'idRole'=> '3',
+    ]);
+
+    /*
+      $table->id('idMenu');
+      $table->string('nameMenu', 30);
+      $table->string('urlMenu', 100);
+      $table->integer('parentId')->nullable();
+      $table->integer('order')->default(0);
+      $table->boolean('habilitated')->default(1);
+      $table->timestamps();
+    
+
+    */
   }
 }
