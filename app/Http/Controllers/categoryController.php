@@ -79,4 +79,13 @@ class CategoryController extends Controller
     return redirect()->route('category.index')
       ->with('success', 'Categoria eliminada con éxito.');
   }
+
+     /**
+   * Devuelve todas las categorias habilitadas
+   */
+  public function devolverCategorias()
+  {
+    $categories = Category::where('habilitated', 1)->get();
+    return $categories;
+  }
 }

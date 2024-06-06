@@ -13,9 +13,6 @@ class Post extends Model
   protected $fillable = [
     'titlePost',
     'contentPost',
-    'habilitated',
-    'idCategory', // VER!!!
-    'idUserPoster', // !!!
   ];
   // Para que lo tome como boolean
   protected $casts = [

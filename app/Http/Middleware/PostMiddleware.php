@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserMiddleware
+class PostMiddleware
 {
     /**
      * Handle an incoming request.
@@ -21,7 +21,7 @@ class UserMiddleware
       $idRoleUser = Auth::user()->idRole;
       $idUserPost = $post->idUserPoster;
       // Si el usuario es distinto al del post y el rol es usuario no puede
-      if (($userId !== $idUserPost) && ($idRoleUser == 1)) { 
+      if (($userId !== $idUserPost) && ($idRoleUser == 1)) {
           return redirect()->route('dashboard');
       }
       return $next($request);

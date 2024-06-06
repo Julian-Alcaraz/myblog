@@ -2,26 +2,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\Category;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
- 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
+
 class PostController extends Controller
 {
   /**
-   * Muestra SOLO los post habilitados = 1
-   *
-   * CONSIGNA:
-   * | Modificar el método "index" para que obtenga toda la lista de posts desde la base de datos
-   * | usando el modelo Post y que se la pase a la vista
+   * Muestra SOLO los post habilitados y filtra segun categorias.
    */
-  public function index()
+  public function index(Request $request)
   {
+    /*
+    $objCategory = new CategoryController();
     $colPosts = Post::where('habilitated', 1)->get();
-    return view('post.index', compact('colPosts'));
+    $colCategories = $objCategory->devolverCategorias();
+    return view('post.index', compact('colPosts', 'colCategories'));
+    */
+    $objCategory = new CategoryController();
+    $query = Post::where('habilitated', 1);
+    if ($request->has('idCategory') && $request->idCategory != '') {
+      $query->where('idCategory', $request->idCategory);
+    }
+    $colPosts = $query->get();
+    $colCategories = $objCategory->devolverCategorias();
+    return view('post.index', compact('colPosts', 'colCategories'));
   }
 
   /**
@@ -29,17 +33,13 @@ class PostController extends Controller
    */
   public function create()
   {
-    $colCategories = Category::all(); // RARO!!!
+    $objCategory = new CategoryController();
+    $colCategories = $objCategory->devolverCategorias();
     return view('post.create', compact('colCategories'));
-    //return view('post.create');
   }
 
   /**
-   * Muestra un formulario para editar un post
-   *
-   * CONSIGNA:
-   * | Modificar el método "edit" para que obtenga el post pasado por parámetro usando el
-   * | método findOrFail y se la pase a la vista.
+   * Muestra un formulario para editar un post y busca el Post
    */
   public function edit(Post $post)
   {
@@ -48,11 +48,7 @@ class PostController extends Controller
   }
 
   /**
-   * Muestra todos los post que estan habilitados.
-   *
-   * CONSIGNA:
-   * | Modificar el método "show" para que obtenga el post pasado
-   * | por parámetro usando el método findOrFail y se la pase a la vista.
+   * Muestra un post.
    */
   public function show(Post $post)
   {
@@ -61,34 +57,48 @@ class PostController extends Controller
   }
 
   /**
-   * Store a newly created resource in storage.
+   * Guarda un post en la BD.
    */
   public function store(Request $request)
   {
+    // Verificaciones
     $request->validate([
       'titlePost' => 'required|max:100',
       'contentPost' => 'required',
-      'poster' => 'required',
+      'idCategory' => 'required|exists:categories,idCategory',
+    ], [
+      'titlePost.required' => 'El título es obligatorio.',
+      'titlePost.max' => 'El título no puede tener mas de 100 caracteres.',
+      'contentPost.required' => 'El contenido es obligatorio.',
+      'idCategory.required' => 'La categoría es obligatoria.',
+      'idCategory.exists' => 'La categoría seleccionada no es válida.',
     ]);
-    Post::create($request->all());
-    return redirect()->route('post.index')
-      ->with('success', 'Post created successfully.');
+    $post = new Post();
+    $post->titlePost = $request->titlePost;
+    $post->contentPost = $request->contentPost;
+    $post->idCategory = $request->idCategory;
+    $post->idUserPoster = Auth::id();
+    $post->save();
+    return redirect()->route('post.index')->with('success', 'Post creado con éxito.');
   }
 
   /**
-   * Update the specified resource in storage.
+   * Edita los datos de un post.
    */
   public function update(Request $request, Post $post)
   {
-    // De esta forma tiene que cambiar todo lo del post, no puede cambiar solo titulo ni solo contenido
+    // Validaciones
     $request->validate([
       'titlePost' => 'required|max:100',
       'contentPost' => 'required',
+    ], [
+      'titlePost.required' => 'El título es obligatorio.',
+      'titlePost.max' => 'El título no puede tener mas de 100 caracteres.',
+      'contentPost.required' => 'El contenido es obligatorio.',
     ]);
     $post = Post::find($post->idPost);
-    $post->update($request->all());
-    return redirect()->route('post.index')
-      ->with('success', 'Post actualizado con éxito.');
+    $post->update($request->only(['titlePost', 'contentPost']));
+    return redirect()->route('post.index')->with('success', 'Post actualizado con éxito.');
   }
 
   /**
@@ -98,28 +108,12 @@ class PostController extends Controller
   {
     $post->habilitated = false;
     $post->save();
-
-    return redirect()->route('post.index')
-      ->with('success', 'Post borrado con éxito');
+    return redirect()->route('post.index')->with('success', 'Post borrado con éxito');
   }
 
   /**
-   * Borra
+   * Verifica si el usuario es dueño del post
    */
-  public function destroy2(Post $post)
-  {
-    $post->delete();
-    return redirect()->route('post.index')
-      ->with('success', 'Post deleted successfully');
-  }
-
-  public function returnUser($colPosts)
-  {
-    //$colPosts = Post::where('habilitated', 1)->get();
-    $respuesta = "hola";
-    return view('post.index', compact('respuesta', 'colPosts'));
-  }
-
   public function esUserDuenioPost($userId, $idUserPoster)
   {
     $esDuenio = true;

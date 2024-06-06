@@ -53,56 +53,72 @@ class DatabaseSeeder extends Seeder
     Category::factory(2)->create();
     Post::factory(10)->create();
 
-    // Toma parentId del valor por defecto (null)
-    // Toma el order del valor por defecto (0)
-    Menu::factory()->create([
-      'nameMenu' => 'Ver posts',
-      'urlMenu' => '/post',
-    ]);
+    // Menu toma 'parentId' del valor por defecto (null)
     // Ver posts
-    MenuRole::factory()->create([
-      'idMenu' => '1',
-      'idRole'=> '1',
-    ]);
-    MenuRole::factory()->create([
-      'idMenu' => '1',
-      'idRole'=> '2',
-    ]);
-    MenuRole::factory()->create([
-      'idMenu' => '1',
-      'idRole'=> '3',
-    ]);
-    // Gestionar Roles
     Menu::factory()->create([
-      'nameMenu' => 'Gestionar roles',
-      'urlMenu' => '/role',
-      'order' => 1,
-    ]);
-    MenuRole::factory()->create([
-      'idMenu' => '2',
-      'idRole'=> '3',
-    ]);
-    // Gestionar Usuarios
-    Menu::factory()->create([
-      'nameMenu' => 'Gestionar usuarios',
-      'urlMenu' => '/user',
-      'order' => 2,
-    ]);
-    MenuRole::factory()->create([
-      'idMenu' => '3',
-      'idRole'=> '3',
-    ]);
-
-    /*
-      $table->id('idMenu');
-      $table->string('nameMenu', 30);
-      $table->string('urlMenu', 100);
-      $table->integer('parentId')->nullable();
-      $table->integer('order')->default(0);
-      $table->boolean('habilitated')->default(1);
-      $table->timestamps();
-    
-
-    */
-  }
+        'nameMenu' => 'Ver posts',
+        'urlMenu' => '/post',
+        'order' => 1,
+      ]);
+      MenuRole::factory()->create([
+        'idMenu' => '1',
+        'idRole' => '1',
+      ]);
+      MenuRole::factory()->create([
+        'idMenu' => '1',
+        'idRole' => '2',
+      ]);
+      MenuRole::factory()->create([
+        'idMenu' => '1',
+        'idRole' => '3',
+      ]);
+      // Gestionar Roles
+      Menu::factory()->create([
+        'nameMenu' => 'Gestionar roles',
+        'urlMenu' => '/role',
+        'order' => 1,
+      ]);
+      MenuRole::factory()->create([
+        'idMenu' => '2',
+        'idRole' => '3',
+      ]);
+      // Gestionar Usuarios
+      Menu::factory()->create([
+        'nameMenu' => 'Gestionar usuarios',
+        'urlMenu' => '/user',
+        'order' => 2,
+      ]);
+      MenuRole::factory()->create([
+        'idMenu' => '3',
+        'idRole' => '3',
+      ]);
+      // Gestionar Menus
+      Menu::factory()->create([
+        'nameMenu' => 'Gestionar menus',
+        'urlMenu' => '/menu',
+        'order' => 3,
+      ]);
+      MenuRole::factory()->create([
+        'idMenu' => '4',
+        'idRole' => '3',
+      ]);
+      // Home
+      Menu::factory()->create([
+        'nameMenu' => 'Home',
+        'urlMenu' => '/',
+        'order' => 0,
+      ]);
+      MenuRole::factory()->create([
+        'idMenu' => '5',
+        'idRole' => '1',
+      ]);
+      MenuRole::factory()->create([
+        'idMenu' => '5',
+        'idRole' => '2',
+      ]);
+      MenuRole::factory()->create([
+        'idMenu' => '5',
+        'idRole' => '3',
+      ]);
+    }
 }

@@ -12,7 +12,7 @@ class MenuComposer
   public function compose(View $view)
   {
     $objMenuController = new MenuController();
-    $userRole = Auth::check() ? Auth::user()->idRol : null;
+    $userRole = Auth::check() ? Auth::user()->idRole : null;
     if ($userRole == null)
     {
       // Menus publicos para usuarios que no se logearon
@@ -23,6 +23,7 @@ class MenuComposer
       // Menus segun rol
       $menus = $objMenuController->buscarMenus($userRole);
     }
+
     $view->with('menus', $menus);
   }
 }

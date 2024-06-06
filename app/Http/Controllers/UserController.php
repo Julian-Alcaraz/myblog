@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return (view ('user.index'));
+        $usuarios = User::all();
+        return (view ('user.index', compact('usuarios')));
     }
 
     /**
@@ -20,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -31,12 +34,14 @@ class UserController extends Controller
         //
     }
 
+
     /**
      * Display the specified resource.
      */
     public function show(User $user)
     {
-        //
+        $user = user :: findOrFail($user->id);
+        return view ('user.show', compact('user'));
     }
 
     /**
@@ -44,7 +49,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        //debe recuperar los roles para ser mostrados como opcion...
+        $roles = Role::all();
+        $user = User :: findOrFail($user->id);
+        return view ('user.edit', compact('user', 'roles'));
     }
 
     /**
@@ -52,7 +60,15 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:100',
+            'email' => 'required|max:100',
+            'role' => 'required',
+        ]);
+        $user = User :: find($user->id);
+        $user->update($request->all());
+        return redirect()->route('user.index')
+            ->with('success', 'User updated successfully');
     }
 
     /**
@@ -60,6 +76,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('user.index')
+            ->with('success', 'User deleted successfully');
     }
+
 }

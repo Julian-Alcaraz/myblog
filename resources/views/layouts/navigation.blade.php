@@ -12,7 +12,7 @@
                 <!-- Navigation Links -->
                 @foreach ($menus as $menu)
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                      <x-nav-link :href="$menu->urlMenu" :active="request()->routeIs($menu->urlMenu)">
+                      <x-nav-link :href="url($menu->urlMenu)" :active="request()->routeIs($menu->urlMenu)">
                           {{ __($menu->nameMenu) }}
                       </x-nav-link>
                   </div>

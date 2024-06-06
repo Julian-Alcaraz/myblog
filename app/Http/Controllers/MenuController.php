@@ -30,8 +30,9 @@ class MenuController extends Controller
    */
   public function edit($id)
   {
+    $menus = Menu::all();
     $menu = Menu::findOrFail($id);
-    return view('menu.edit', compact('menu'));
+    return view('menu.edit', compact('menu'), compact('menus'));
   }
 
   /**
@@ -66,7 +67,7 @@ class MenuController extends Controller
     $request->validate([
       'nameMenu' => 'required|max:30',
       'urlMenu' => 'required|max:100',
-      'order' => 'required',
+        'order' => 'required',
     ]);
     $menu = Menu::find($id);
     $menu->update($request->all());
@@ -100,12 +101,12 @@ class MenuController extends Controller
     return $menus;
   }
 
-  /**
+   /**
    * Busca los menus que son visibles para usuarios que no hayan iniciado sesion
    */
   public function buscarMenusPublicos()
   {
-    $menus = Menu::where('idMenu', 1)->get();
+    $menus = Menu::where('idMenu', 1)->orWhere('idMenu', 5)->orderBy('order')->get();
     return $menus;
   }
 }
