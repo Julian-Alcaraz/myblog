@@ -8,11 +8,12 @@
             class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 shadow-md rounded p-6  overflow-visible">
             <div class="flex items-center justify-between mb-4">
                 <h1 class="text-2xl text-gray-800 dark:text-gray-200">Menú</h1>
-            </div>
-            <a href="{{ route('menu.create') }}"
+                 <a href="{{ route('menu.create') }}"
                 class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded">
                 Nuevo Menu
-            </a>
+                 </a>
+            </div>
+
             <table class="table-auto bg-gray-900 border-b text-gray-800 dark:text-gray-200 rounded-lg">
                 <thead>
                     <tr>
