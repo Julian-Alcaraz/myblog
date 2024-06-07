@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MenuRoleController;
+use App\Http\Controllers\RoleController;
 
 class MenuController extends Controller
 {
   /**
-   * Display a listing of the resource.
+   * Muestra TODOS los menus.
    */
   public function index()
   {
@@ -18,34 +20,36 @@ class MenuController extends Controller
   }
 
   /**
-   * Show the form for creating a new resource.
+   * Muestra el formulario para crear un nuevo menu.
    */
   public function create()
   {
-    return view('menu.create');
+    $menus = Menu::all();
+    $objRoleController = new RoleController();
+    $colRoles = $objRoleController->devolverRoles();
+    return view('menu.create', compact('menus'), compact('colRoles'));
   }
 
   /**
-   * Show the form for editing the specified resource.
+   * Muestra un formulario para editar un menu.
    */
-  public function edit($id)
+  public function edit($idMenu)
   {
     $menus = Menu::all();
-    $menu = Menu::findOrFail($id);
+    $menu = Menu::findOrFail($idMenu);
     return view('menu.edit', compact('menu'), compact('menus'));
   }
-
   /**
-   * Display the specified resource.
+   *  Muestra un menu.
    */
-  public function show($id)
+  public function show(Menu $menu)
   {
-    $menu = Menu::findOrFail($id);
+    $menu = Menu::findOrFail($menu->idMenu);
     return view('menu.show', compact('menu'));
   }
 
   /**
-   * Store a newly created resource in storage.
+   * Guarda un menu en la BD.
    */
   public function store(Request $request)
   {
@@ -54,40 +58,59 @@ class MenuController extends Controller
       'urlMenu' => 'required|max:100',
       'order' => 'required',
     ]);
-    Menu::create($request->all());
-    return redirect()->route('menu.index')
-      ->with('success', 'Menu creado con éxito.');
+    //Menu::create($request->all());
+    $menu = Menu::create($request->only(['nameMenu', 'urlMenu', 'order', 'parentId']));
+
+    // Asignar roles al menú
+    if ($request->has('roles')) {
+      $menu->roles()->sync($request->roles);
+    }
+
+
+    return redirect()->route('menu.index')->with('success', 'Menu creado con éxito.');
   }
 
   /**
-   * Update the specified resource in storage.
+   * Actualiza un menu en la BD.
    */
-  public function update(Request $request, $id)
+  public function update(Request $request, Menu $menu)
   {
     $request->validate([
       'nameMenu' => 'required|max:30',
       'urlMenu' => 'required|max:100',
-        'order' => 'required',
+      'order' => 'required',
+    ], [
+      'nameMenu.required' => 'El nombre del menu es obligatorio.',
+      'nameMenu.max' => 'El nombre del menu no puede tener mas de 30 caracteres.',
+      'urlMenu.required' => 'La url del menu es obligatoria.',
+      'urlMenu.max' => 'La url del menu no puede tener mas de 100 caracteres.',
+      'order.required' => 'El orden del menu es obligatorio.',
     ]);
-    $menu = Menu::find($id);
-    $menu->update($request->all());
-    return redirect()->route('menu.index')
-      ->with('success', 'Menu actualizado con éxito.');
+    $menu = Menu::find($menu->idMenu);
+    $menu->update($request->only(['nameMenu', 'urlMenu', 'order', 'parentId']));
+
+    // Asignar roles al menú
+    if ($request->has('roles')) {
+      $menu->roles()->sync($request->roles);
+    } else {
+      $menu->roles()->sync([]);
+    }
+
+    return redirect()->route('menu.index')->with('success', 'Menu actualizado con éxito.');
   }
 
   /**
-   * Remove the specified resource from storage.
+   * Borra un Menu de la BD.
    */
   public function destroy($id)
   {
     $menu = Menu::find($id);
     $menu->delete();
-    return redirect()->route('menu.index')
-      ->with('success', 'Menu eliminado  con éxito.');
+    return redirect()->route('menu.index')->with('success', 'Menu eliminado  con éxito.');
   }
 
   /**
-   * Busca menus habilitados = true segun un idrol y los ordena por el campo 'order'
+   * Busca menus habilitados = true segun un idrol y los ordena por el campo 'order'.
    */
   public function buscarMenus($idRol)
   {
@@ -97,17 +120,35 @@ class MenuController extends Controller
     })->where('menus.habilitated', 1)
       ->orderBy('order')
       ->get();
-
     return $menus;
   }
 
-   /**
-   * Busca los menus que son visibles para usuarios que no hayan iniciado sesion
+  /**
+   * Busca los menus que son visibles para usuarios que no hayan iniciado sesion.
    */
   public function buscarMenusPublicos()
   {
     $menus = Menu::where('idMenu', 1)->orWhere('idMenu', 5)->orderBy('order')->get();
     return $menus;
+  }
+
+  /**
+   * Recibo obj $menu -> busco en MenuRol con el metodo del controller.
+   */
+  public function buscarRolesMenu(Menu $menu)
+  {
+    $objMenuRoleController = new MenuRoleController();
+    $objRoleController = new RoleController();
+    $colIdRoles = $objMenuRoleController->darRoles($menu->idMenu);
+    $colRoles = array();
+    if (count($colIdRoles) > 0) {
+      foreach ($colIdRoles as $idRole) // No es un idRole, no se que es esto, no se uqe nombre poneerl!!!
+      {
+        $role = $objRoleController->devolverObjRol($idRole->idRole);
+        array_push($colRoles, $role);
+      }
+    }
+    return $colRoles;
   }
 }
 

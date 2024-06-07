@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class RoleController extends Controller
 {
   /**
-   * Display a listing of the resource.
+   * Muestra todos los roles.
    */
   public function index()
   {
@@ -17,7 +17,7 @@ class RoleController extends Controller
   }
 
   /**
-   * Show the form for creating a new resource.
+   * Muestra el formulario para crear un nuevo rol.
    */
   public function create()
   {
@@ -25,7 +25,7 @@ class RoleController extends Controller
   }
 
   /**
-   * Show the form for editing the specified resource.
+   * Muestra un formulario para editar un rol.
    */
   public function edit($id)
   {
@@ -34,7 +34,7 @@ class RoleController extends Controller
   }
 
   /**
-   * Display the specified resource.
+   * Muestra un rol.
    */
   public function show($id)
   {
@@ -43,7 +43,7 @@ class RoleController extends Controller
   }
 
   /**
-   * Store a newly created resource in storage.
+   * Guarda un rol en la BD.
    */
   public function store(Request $request)
   {
@@ -51,12 +51,11 @@ class RoleController extends Controller
       'nameRole' => 'required|max:20',
     ]);
     Role::create($request->all());
-    return redirect()->route('role.index')
-      ->with('success', 'Rol creado con éxito.');
+    return redirect()->route('role.index')->with('success', 'Rol creado con éxito.');
   }
 
   /**
-   * Update the specified resource in storage.
+   * Actualiza un rol en la BD.
    */
   public function update(Request $request, $id)
   {
@@ -65,18 +64,35 @@ class RoleController extends Controller
     ]);
     $role = Role::find($id);
     $role->update($request->all());
-    return redirect()->route('role.index')
-      ->with('success', 'Rol actualizado con éxito.');
+    return redirect()->route('role.index')->with('success', 'Rol actualizado con éxito.');
   }
 
   /**
-   * Remove the specified resource from storage.
+   * Borra un rol de la BD.
    */
   public function destroy($id)
   {
     $role = Role::find($id);
     $role->delete();
-    return redirect()->route('role.index')
-      ->with('success', 'Rol eliminado con éxito.');
+    return redirect()->route('role.index')->with('success', 'Rol eliminado con éxito.');
+  }
+
+  /**
+   * 
+   */
+  public function devolverObjRol($idRole)
+  {
+    $rol = Role::find($idRole);
+    //$nombreRol = $rol->nameRole;
+    return $rol;
+  }
+  
+  /**
+   * Devuelve todos los roles
+   */
+  public function devolverRoles()
+  {
+    $roles = Role::all();
+    return $roles;
   }
 }
