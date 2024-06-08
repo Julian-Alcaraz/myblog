@@ -66,7 +66,7 @@ class MenuRoleController extends Controller
 
   /**
    * Da los roles asociados a un menu.
-   * 
+   *
    * QUIZA USANDO "->pluck('idRole')" O ALGO PARECIDO QUEDE MEJOR, FUNCIONA AHORA!!!
    */
   public function darRoles($idMenu)

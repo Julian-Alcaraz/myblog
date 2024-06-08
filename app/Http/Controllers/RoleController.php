@@ -73,12 +73,13 @@ class RoleController extends Controller
   public function destroy($id)
   {
     $role = Role::find($id);
-    $role->delete();
+    $role->habilitated=0;
+    $role->save();
     return redirect()->route('role.index')->with('success', 'Rol eliminado con éxito.');
   }
 
   /**
-   * 
+   *
    */
   public function devolverObjRol($idRole)
   {
@@ -86,7 +87,7 @@ class RoleController extends Controller
     //$nombreRol = $rol->nameRole;
     return $rol;
   }
-  
+
   /**
    * Devuelve todos los roles
    */

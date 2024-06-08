@@ -12,12 +12,14 @@
             </a>
 
             <!-- Enlaces para cada categoría -->
-            @foreach ($colCategories as $category)
-                <a href="{{ route('post.index', ['idCategory' => $category->idCategory]) }}"
-                   class="text-gray-800 dark:text-gray-200 {{ request('idCategory') == $category->idCategory ? 'font-bold' : '' }}">
-                    {{ $category->nameCategory }}
-                </a>
-            @endforeach
+            @isset($colCategories)
+                @foreach ($colCategories as $category)
+                     <a href="{{ route('post.index', ['idCategory' => $category->idCategory]) }}"
+                     class="text-gray-800 dark:text-gray-200 {{ request('idCategory') == $category->idCategory ? 'font-bold' : '' }}">
+                     {{ $category->nameCategory }}
+                     </a>
+                @endforeach
+            @endisset
         </nav>
     </div>
     <div class="text-white m-4">
@@ -26,6 +28,7 @@
             Nuevo post
         </a>
     </div>
+    @isset($colPosts)
     @foreach ($colPosts as $post)
         <div class="text-white m-4">
             <div class="bg-gray-800 rounded-lg shadow-lg">
@@ -47,4 +50,5 @@
             </div>
         </div>
     @endforeach
+    @endisset
 </x-app-layout>

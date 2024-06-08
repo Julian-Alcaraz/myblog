@@ -5,7 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <!-- dashboard -->
+                    <a href="{{ route('post') }}">
                         <img src="{{ asset('favicon.ico') }}" alt="Logo" class="block h-16 w-auto" />
                     </a>
                 </div>
@@ -83,11 +84,11 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+        <!-- <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('post')" :active="request()->routeIs('post')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-        </div>
+        </div> -->
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">

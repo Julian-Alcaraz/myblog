@@ -1,4 +1,4 @@
-{{-- 
+{{--
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -28,7 +28,7 @@
                             @auth
                                 <a href="{{ url('/dashboard') }}"
                                     class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                    Dashboard
+                                    Dashboardxgdxgfxdgf
                                 </a>
                             @else
                                 <a href="{{ route('login') }}"
@@ -42,10 +42,10 @@
                                     </a>
                                 @endif
                             @endauth
-                            <a href="{{ route('category.index') }}"
+                            <!-- <a href="{{ route('category.index') }}"
                             class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                               AOUIPWDJHAIOWDJWAIODWAJDIOWAJDIOWADJWOIA
-                            </a>
+                            </a> -->
                         </nav>
                     @endif
 

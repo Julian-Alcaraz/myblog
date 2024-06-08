@@ -22,7 +22,8 @@ class PostMiddleware
       $idUserPost = $post->idUserPoster;
       // Si el usuario es distinto al del post y el rol es usuario no puede
       if (($userId !== $idUserPost) && ($idRoleUser == 1)) {
-          return redirect()->route('dashboard');
+        //   return redirect()->route('dashboard');
+          return redirect()->route('post');
       }
       return $next($request);
     }

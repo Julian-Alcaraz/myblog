@@ -162,7 +162,7 @@ class DatabaseSeeder extends Seeder
     // Menu toma 'parentId' del valor por defecto (null)
     // Ver posts
     Menu::factory()->create([
-        'nameMenu' => 'Ver posts',
+        'nameMenu' => 'Posts',
         'urlMenu' => '/post',
         'order' => 1,
       ]);
@@ -210,23 +210,23 @@ class DatabaseSeeder extends Seeder
         'idRole' => '3',
       ]);
       // Home
-    Menu::factory()->create([
-      'nameMenu' => 'Home',
-      'urlMenu' => '/',
-      'order' => 0,
-    ]);
-      MenuRole::factory()->create([
-        'idMenu' => '5',
-        'idRole' => '1',
-      ]);
-      MenuRole::factory()->create([
-        'idMenu' => '5',
-        'idRole' => '2',
-      ]);
-      MenuRole::factory()->create([
-        'idMenu' => '5',
-        'idRole' => '3',
-      ]);
+    // Menu::factory()->create([
+    //   'nameMenu' => 'Home',
+    //   'urlMenu' => '/',
+    //   'order' => 0,
+    // ]);
+    //   MenuRole::factory()->create([
+    //     'idMenu' => '5',
+    //     'idRole' => '1',
+    //   ]);
+    //   MenuRole::factory()->create([
+    //     'idMenu' => '5',
+    //     'idRole' => '2',
+    //   ]);
+    //   MenuRole::factory()->create([
+    //     'idMenu' => '5',
+    //     'idRole' => '3',
+    //   ]);
     Menu::factory()->create([
       'nameMenu' => 'Gestionar categorias',
       'urlMenu' => '/category',

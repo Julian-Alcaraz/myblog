@@ -68,7 +68,7 @@ class UserController extends Controller
         $user = User :: find($user->id);
         $user->update($request->all());
         return redirect()->route('user.index')
-            ->with('success', 'User updated successfully');
+            ->with('success', 'Usuario actualizado exitosamente');
     }
 
     /**
@@ -78,7 +78,7 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('user.index')
-            ->with('success', 'User deleted successfully');
+            ->with('success', 'Usuario eliminado exitosamente');
     }
 
 }

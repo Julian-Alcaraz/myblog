@@ -19,7 +19,8 @@ class AdminMiddleware
     $userId = Auth::user()->id;
     if ($userId !== 3)
     {
-      return redirect()->route('dashboard');
+    //   return redirect()->route('dashboard');
+      return redirect()->route('post.index');
     }
     return $next($request);
   }
