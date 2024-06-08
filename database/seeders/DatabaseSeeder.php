@@ -82,6 +82,7 @@ class DatabaseSeeder extends Seeder
         'idMenu' => '2',
         'idRole' => '3',
       ]);
+
       // Gestionar Usuarios
       Menu::factory()->create([
         'nameMenu' => 'Gestionar usuarios',
@@ -118,6 +119,15 @@ class DatabaseSeeder extends Seeder
       ]);
       MenuRole::factory()->create([
         'idMenu' => '5',
+        'idRole' => '3',
+      ]);
+      Menu::factory()->create([
+        'nameMenu' => 'Gestionar categorias',
+        'urlMenu' => '/category',
+        'order' => 4,
+      ]);
+      MenuRole::factory()->create([
+        'idMenu' => '6',
         'idRole' => '3',
       ]);
     }
