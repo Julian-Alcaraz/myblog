@@ -54,6 +54,47 @@
         <main>
             {{ $slot }}
         </main>
+    <footer class="bg-gray-800 text-white py-6 mt-10">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-around">
+            <!-- Información del grupo -->
+            <h5 class="text-xl font-semibold mb-2">Grupo n&uacute;mero 3</h5>
+            <div class="w-full mx-auto flex flex-wrap  border-b border-gray-700">
+                <div class="w-1/2 text-center">
+                    <p class="mb-1">Facultad de Informatica</p>
+                    <p class="mb-1">Universidad Nacional del Comahue</p>
+                </div>
+                <div class="w-1/2 text-center">
+                    <p class="mb-1">Programaci&oacute;n web avanzada </p>
+                    <p class="mb-0">Año 2024</p>
+                </div>
+            </div>
+            <!-- Contacto -->
+             <hr>
+            <h5 class="text-xl font-semibold mb-2 text-center">Integrantes</h5>
+            <div class="w-full flex flex-wrap text-center">
+                <div  class="w-1/3 ">
+                    <p class="mb-1">Nombre: Benjamin Diego FAI -</p>
+                    <p class="mb-1">Mail: <a href="mailto:diego.benjamin@est.fi.uncoma.edu.ar" class="text-white hover:underline">diego.benjamin@est.fi.uncoma.edu.ar</a> </p>
+                    <p class="mb-0">GitHub: <a href="https://github.com/Diego966-b"  class="text-white hover:underline">Diego-Benjamin</a></p>
+                </div>
+                <div  class="w-1/3 ">
+                    <p class="mb-1">Nombre: Bilo faoust FAI - 3616 </p>
+                    <p class="mb-1">Mail: <a href="mailto:fausto.bilo@est.fi.uncoma.edu.ar" class="text-white hover:underline">fausto.bilo@est.fi.uncoma.edu.ar</a> </p>
+                    <p class="mb-0">GitHub: <a href="https://github.com/IgnacioCooper47"  class="text-white hover:underline"> Fausto-Bilo</a></p>
+                </div>
+                <div  class="w-1/3 ">
+                    <p class="mb-1">Nombre: Alcaraz Julian FAI - 4261 </p>
+                    <p class="mb-1">Mail: <a href="mailto:julian.alcaraz@est.fi.uncoma.edu.ar" class="text-white hover:underline">julian.alcaraz@est.fi.uncoma.edu.ar</a> </p>
+                    <p class="mb-0">GitHub: <a href="https://github.com/Julian-Alcaraz"  class="text-white hover:underline">Julian-Alcaraz</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center border-t border-gray-700 pt-4 mt-4">
+            <a href="https://github.com/Julian-Alcaraz/myblog"    class="text-white hover:underline" >Repositiorio del proyecto</a>
+        </div>
+    </div>
+</footer>
     </div>
 </body>
 
