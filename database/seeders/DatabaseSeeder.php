@@ -233,7 +233,7 @@ class DatabaseSeeder extends Seeder
       'order' => 4,
     ]);
       MenuRole::factory()->create([
-        'idMenu' => '6',
+        'idMenu' => '5',
         'idRole' => '3',
       ]);
     }

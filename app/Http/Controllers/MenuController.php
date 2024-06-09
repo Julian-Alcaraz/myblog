@@ -136,7 +136,7 @@ class MenuController extends Controller
    */
   public function buscarMenusPublicos()
   {
-    $menus = Menu::where('idMenu', 1)->orWhere('idMenu', 5)->orderBy('order')->get();
+    $menus = Menu::where('idMenu', 1)->orderBy('order')->get();
     return $menus;
   }
 
