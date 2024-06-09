@@ -76,15 +76,22 @@ class CategoryController extends Controller
   {
     $category = Category::find($id);
     // $category->delete();
-
     $category->habilitated = 0;
     $category->save();
     // $category->update($request->all());
     return redirect()->route('category.index')
       ->with('success', 'Categoria eliminada con éxito.');
   }
+  public function alta($id)
+  {
+    $category = Category::find($id);
+    $category->habilitated = 1;
+    $category->save();
+    return redirect()->route('category.index')
+      ->with('success', 'Categoria eliminada con éxito.');
+  }
 
-     /**
+    /**
    * Devuelve todas las categorias habilitadas
    */
   public function devolverCategorias()

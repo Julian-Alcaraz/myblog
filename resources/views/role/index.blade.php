@@ -29,12 +29,21 @@
                         <td class="py-2 px-4">{{ $role->updated_at }}</td>
                         <td class="py-2 px-4">
                             <a href="{{ route('role.edit', $role->idRole) }}" class="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">Editar</a>                        </td>
+
+                        @if($role->habilitated)
                         <td class="py-2 px-4">
                             <form action="{{ route('role.destroy', $role->idRole) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600">Borrar</button>                            </form>
                         </td>
+                        @else
+                        <td class="py-2 px-4">
+                            <form action="{{ route('role.alta', $role->idRole) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Habilitar</button>                            </form>
+                        </td>
+                        @endif
                     </tr>
                 @endforeach
                 </tbody>

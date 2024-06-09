@@ -42,12 +42,17 @@ Route::middleware(['auth', 'verified'])->group(function () { // Middleware para 
   Route::middleware('AdminMiddleware')->group(function () { // Middleware para que el usuario logeado tenga rol admin
     // Menu
     Route::resource('menu', MenuController::class);
+    Route::post('/menu/{menu}', [MenuController::class, 'alta'])->name('menu.alta');
     // Role
     Route::resource('role', RoleController::class);
+    Route::post('/role/{role}', [RoleController::class, 'alta'])->name('role.alta');
     // Category
     Route::resource('category', CategoryController::class);
+    Route::post('/category/{category}', [CategoryController::class, 'alta'])->name('category.alta');
     // User
     Route::resource('user', UserController::class);
+    Route::post('/user/{user}', [UserController::class, 'alta'])->name('user.alta');
+
     // MenuRole
     Route::resource('menuroles', MenuRoleController::class);
   });

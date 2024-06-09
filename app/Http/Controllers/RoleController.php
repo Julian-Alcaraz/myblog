@@ -77,6 +77,13 @@ class RoleController extends Controller
     $role->save();
     return redirect()->route('role.index')->with('success', 'Rol eliminado con éxito.');
   }
+  public function alta($id)
+  {
+    $role = Role::find($id);
+    $role->habilitated=1;
+    $role->save();
+    return redirect()->route('role.index')->with('success', 'Rol habilitado con éxito.');
+  }
 
   /**
    *

@@ -20,6 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 @foreach ($usuarios as $usuario)
                     <tr>
                         <td class="py-2 px-4">{{ $usuario->id }}</td>
@@ -33,6 +34,7 @@
                         <td class="py-2 px-4">
                             <a href="{{ route('user.edit', $usuario->id) }}" class="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">Editar</a>
                         </td>
+                        @if($usuario->habilitated)
                         <td class="py-2 px-4">
                             <form action="{{ route('user.destroy', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
                                 @csrf
@@ -40,6 +42,14 @@
                                 <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600">Eliminar</button>
                             </form>
                         </td>
+                        @else
+                        <td class="py-2 px-4">
+                            <form action="{{ route('user.alta', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas habilitar este usuario?');">
+                                @csrf
+                                <button type="submit" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Habilitar</button>
+                            </form>
+                        </td>
+                        @endif
                     </tr>
                 @endforeach
                 </tbody>

@@ -68,6 +68,7 @@
                                 <a href="{{ route('menu.edit', $menu) }}"
                                     class="text-white bg-blue-500 hover:bg-blue-700 rounded-md px-4 py-2">Editar</a>
                             </td>
+                            @if($menu->habilitated)
                             <td class="py-2 px-4">
                                 <form action="{{ route('menu.destroy', $menu->idMenu) }}" method="POST">
                                     @csrf
@@ -76,6 +77,15 @@
                                         class="bg-red-500 hover:bg-red-700 text-white rounded-md px-4 py-2">Delete</button>
                                 </form>
                             </td>
+                            @else
+                            <td class="py-2 px-4">
+                                <form action="{{ route('menu.alta', $menu->idMenu) }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="bg-green-500 hover:bg-green-700 text-white rounded-md px-4 py-2">Habilitar</button>
+                                </form>
+                            </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

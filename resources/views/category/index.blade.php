@@ -32,6 +32,8 @@
                                 <a href="{{ route('category.edit', $category->idCategory) }}"
                                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Editar</a>
                             </td>
+
+                            @if($category->habilitated)
                             <td class="py-2 px-4">
                                 <form action="{{ route('category.destroy', $category->idCategory) }}" method="POST"
                                     class="inline">
@@ -40,6 +42,15 @@
                                 <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Eliminar</button>
                                 </form>
                             </td>
+                            @else
+                            <td class="py-2 px-4">
+                                <form action="{{ route('category.alta', $category->idCategory) }}" method="POST"
+                                    class="inline">
+                                    @csrf
+                                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">Habilitar</button>
+                                </form>
+                            </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

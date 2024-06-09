@@ -109,6 +109,13 @@ class MenuController extends Controller
     $menu->save();
     return redirect()->route('menu.index')->with('success', 'Menu eliminado  con éxito.');
   }
+  public function alta($id)
+  {
+    $menu = Menu::find($id);
+    $menu->habilitated=1;
+    $menu->save();
+    return redirect()->route('menu.index')->with('success', 'Menu eliminado  con éxito.');
+  }
 
   /**
    * Busca menus habilitados = true segun un idrol y los ordena por el campo 'order'.

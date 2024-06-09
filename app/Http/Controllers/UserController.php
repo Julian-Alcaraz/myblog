@@ -76,9 +76,22 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        // $user = User :: find($id);
+        $user->habilitated = 0;
+        $user->save();
+        // $user->delete();
+        // $user->delete();
         return redirect()->route('user.index')
             ->with('success', 'Usuario eliminado exitosamente');
+    }
+
+    public function alta($id)
+    {
+        $user = User :: find($id);
+        $user->habilitated = 1;
+        $user->save();
+        return redirect()->route('user.index')
+            ->with('success', 'Usuario habilitado exitosamente');
     }
 
 }
