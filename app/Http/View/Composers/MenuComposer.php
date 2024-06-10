@@ -13,13 +13,10 @@ class MenuComposer
   {
     $objMenuController = new MenuController();
     $userRole = Auth::check() ? Auth::user()->idRole : null;
-    if ($userRole == null)
-    {
+    if ($userRole == null) {
       // Menus publicos para usuarios que no se logearon
       $menus = $objMenuController->buscarMenusPublicos();
-    }
-    else
-    {
+    } else {
       // Menus segun rol
       $menus = $objMenuController->buscarMenus($userRole);
     }

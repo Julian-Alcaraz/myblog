@@ -8,10 +8,10 @@
             class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 shadow-md rounded p-6  overflow-visible">
             <div class="flex items-center justify-between mb-4">
                 <h1 class="text-2xl text-gray-800 dark:text-gray-200">Menú</h1>
-                 <a href="{{ route('menu.create') }}"
-                class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded">
-                Nuevo Menu
-                 </a>
+                <a href="{{ route('menu.create') }}"
+                    class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded">
+                    Nuevo Menu
+                </a>
             </div>
 
             <table class="table-auto bg-gray-900 border-b text-gray-800 dark:text-gray-200 rounded-lg">
@@ -68,23 +68,23 @@
                                 <a href="{{ route('menu.edit', $menu) }}"
                                     class="text-white bg-blue-500 hover:bg-blue-700 rounded-md px-4 py-2">Editar</a>
                             </td>
-                            @if($menu->habilitated)
-                            <td class="py-2 px-4">
-                                <form action="{{ route('menu.destroy', $menu->idMenu) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="bg-red-500 hover:bg-red-700 text-white rounded-md px-4 py-2">Delete</button>
-                                </form>
-                            </td>
+                            @if ($menu->habilitated)
+                                <td class="py-2 px-4">
+                                    <form action="{{ route('menu.destroy', $menu->idMenu) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-700 text-white rounded-md px-4 py-2">Delete</button>
+                                    </form>
+                                </td>
                             @else
-                            <td class="py-2 px-4">
-                                <form action="{{ route('menu.alta', $menu->idMenu) }}" method="POST">
-                                    @csrf
-                                    <button type="submit"
-                                        class="bg-green-500 hover:bg-green-700 text-white rounded-md px-4 py-2">Habilitar</button>
-                                </form>
-                            </td>
+                                <td class="py-2 px-4">
+                                    <form action="{{ route('menu.alta', $menu->idMenu) }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="bg-green-500 hover:bg-green-700 text-white rounded-md px-4 py-2">Habilitar</button>
+                                    </form>
+                                </td>
                             @endif
                         </tr>
                     @endforeach

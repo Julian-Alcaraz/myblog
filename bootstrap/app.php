@@ -6,6 +6,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 // Middleware
 use \App\Http\Middleware\PostMiddleware;
 use \App\Http\Middleware\AdminMiddleware;
+
 return Application::configure(basePath: dirname(__DIR__))
   ->withRouting(
     web: __DIR__ . '/../routes/web.php',

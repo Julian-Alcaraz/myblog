@@ -17,9 +17,7 @@ class AdminMiddleware
   public function handle(Request $request, Closure $next): Response
   {
     $userId = Auth::user()->id;
-    if ($userId !== 3)
-    {
-    //   return redirect()->route('dashboard');
+    if ($userId !== 3) {
       return redirect()->route('post.index');
     }
     return $next($request);

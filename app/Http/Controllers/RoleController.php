@@ -73,25 +73,28 @@ class RoleController extends Controller
   public function destroy($id)
   {
     $role = Role::find($id);
-    $role->habilitated=0;
+    $role->habilitated = 0;
     $role->save();
     return redirect()->route('role.index')->with('success', 'Rol eliminado con éxito.');
   }
+
+  /**
+   * Hace alta de rol.
+   */
   public function alta($id)
   {
     $role = Role::find($id);
-    $role->habilitated=1;
+    $role->habilitated = 1;
     $role->save();
     return redirect()->route('role.index')->with('success', 'Rol habilitado con éxito.');
   }
 
   /**
-   *
+   * Devuelve el obj rol segun un id.
    */
   public function devolverObjRol($idRole)
   {
     $rol = Role::find($idRole);
-    //$nombreRol = $rol->nameRole;
     return $rol;
   }
 

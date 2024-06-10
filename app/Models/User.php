@@ -21,7 +21,7 @@ class User extends Authenticatable
     'email',
     'password',
   ];
-  
+
   // Para que lo tome como boolean
   protected $casts = [
     'habilitated' => 'boolean',

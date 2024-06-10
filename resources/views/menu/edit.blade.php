@@ -1,5 +1,4 @@
 @php
-    // Quiza pasarlo a un composer esto!!!
     $objMenuController = new App\Http\Controllers\MenuController();
     $objRoleController = new App\Http\Controllers\RoleController();
     // Busca los roles que ya pertenezcan a el menu segun la BD:

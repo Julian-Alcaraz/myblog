@@ -74,12 +74,12 @@
             <h5 class="text-xl font-semibold mb-2 text-center">Integrantes</h5>
             <div class="w-full flex flex-wrap text-center">
                 <div  class="w-1/3 ">
-                    <p class="mb-1">Nombre: Benjamin Diego FAI -</p>
+                    <p class="mb-1">Nombre: Benjamin Diego FAI - 3002 </p>
                     <p class="mb-1">Mail: <a href="mailto:diego.benjamin@est.fi.uncoma.edu.ar" class="text-white hover:underline">diego.benjamin@est.fi.uncoma.edu.ar</a> </p>
                     <p class="mb-0">GitHub: <a href="https://github.com/Diego966-b"  class="text-white hover:underline">Diego-Benjamin</a></p>
                 </div>
                 <div  class="w-1/3 ">
-                    <p class="mb-1">Nombre: Bilo faoust FAI - 3616 </p>
+                    <p class="mb-1">Nombre: Biló Fausto FAI - 3616 </p>
                     <p class="mb-1">Mail: <a href="mailto:fausto.bilo@est.fi.uncoma.edu.ar" class="text-white hover:underline">fausto.bilo@est.fi.uncoma.edu.ar</a> </p>
                     <p class="mb-0">GitHub: <a href="https://github.com/IgnacioCooper47"  class="text-white hover:underline"> Fausto-Bilo</a></p>
                 </div>

@@ -58,7 +58,6 @@ class MenuController extends Controller
       'urlMenu' => 'required|max:100',
       'order' => 'required',
     ]);
-    //Menu::create($request->all());
     $menu = Menu::create($request->only(['nameMenu', 'urlMenu', 'order', 'parentId']));
 
     // Asignar roles al menú
@@ -105,14 +104,14 @@ class MenuController extends Controller
   public function destroy($id)
   {
     $menu = Menu::find($id);
-    $menu->habilitated=0;
+    $menu->habilitated = 0;
     $menu->save();
     return redirect()->route('menu.index')->with('success', 'Menu eliminado  con éxito.');
   }
   public function alta($id)
   {
     $menu = Menu::find($id);
-    $menu->habilitated=1;
+    $menu->habilitated = 1;
     $menu->save();
     return redirect()->route('menu.index')->with('success', 'Menu eliminado  con éxito.');
   }
@@ -150,8 +149,7 @@ class MenuController extends Controller
     $colIdRoles = $objMenuRoleController->darRoles($menu->idMenu);
     $colRoles = array();
     if (count($colIdRoles) > 0) {
-      foreach ($colIdRoles as $idRole) // No es un idRole, no se que es esto, no se uqe nombre poneerl!!!
-      {
+      foreach ($colIdRoles as $idRole) {
         $role = $objRoleController->devolverObjRol($idRole->idRole);
         array_push($colRoles, $role);
       }

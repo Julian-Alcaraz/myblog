@@ -12,12 +12,6 @@ class PostController extends Controller
    */
   public function index(Request $request)
   {
-    /*
-    $objCategory = new CategoryController();
-    $colPosts = Post::where('habilitated', 1)->get();
-    $colCategories = $objCategory->devolverCategorias();
-    return view('post.index', compact('colPosts', 'colCategories'));
-    */
     $objCategory = new CategoryController();
     $query = Post::where('habilitated', 1);
     if ($request->has('idCategory') && $request->idCategory != '') {

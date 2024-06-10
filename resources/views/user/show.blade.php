@@ -1,3 +1,0 @@
-<div>
-    Show user
-</div>

@@ -11,7 +11,7 @@ class Category extends Model
   protected $table = 'categories';
   protected $primaryKey = 'idCategory';
   protected $fillable = [
-    'nameCategory', 
+    'nameCategory',
   ];
   // Para que lo tome como boolean
   protected $casts = [

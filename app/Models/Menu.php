@@ -23,6 +23,6 @@ class Menu extends Model
   // Relacion entre menu y rol
   public function roles()
   {
-      return $this->belongsToMany(Role::class, 'menu_roles', 'idMenu', 'idRole')->withPivot('habilitated')->withTimestamps();
+    return $this->belongsToMany(Role::class, 'menu_roles', 'idMenu', 'idRole')->withPivot('habilitated')->withTimestamps();
   }
 }

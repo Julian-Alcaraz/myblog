@@ -9,22 +9,21 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PostMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next): Response
-    {
-      $post = $request->route('post');
-      $userId = Auth::user()->id;
-      $idRoleUser = Auth::user()->idRole;
-      $idUserPost = $post->idUserPoster;
-      // Si el usuario es distinto al del post y el rol es usuario no puede
-      if (($userId !== $idUserPost) && ($idRoleUser == 1)) {
-        //   return redirect()->route('dashboard');
-          return redirect()->route('post');
-      }
-      return $next($request);
+  /**
+   * Handle an incoming request.
+   *
+   * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+   */
+  public function handle(Request $request, Closure $next): Response
+  {
+    $post = $request->route('post');
+    $userId = Auth::user()->id;
+    $idRoleUser = Auth::user()->idRole;
+    $idUserPost = $post->idUserPoster;
+    // Si el usuario es distinto al del post y el rol es usuario no puede
+    if (($userId !== $idUserPost) && ($idRoleUser == 1)) {
+      return redirect()->route('post');
     }
+    return $next($request);
+  }
 }

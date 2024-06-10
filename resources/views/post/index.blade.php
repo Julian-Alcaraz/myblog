@@ -7,17 +7,17 @@
         <nav class="flex space-x-4">
             <!-- Enlace para mostrar todos los posts -->
             <a href="{{ route('post.index') }}"
-               class="text-gray-800 dark:text-gray-200 {{ request('idCategory') ? '' : 'font-bold' }}">
+                class="text-gray-800 dark:text-gray-200 {{ request('idCategory') ? '' : 'font-bold' }}">
                 Todos
             </a>
 
             <!-- Enlaces para cada categoría -->
             @isset($colCategories)
                 @foreach ($colCategories as $category)
-                     <a href="{{ route('post.index', ['idCategory' => $category->idCategory]) }}"
-                     class="text-gray-800 dark:text-gray-200 {{ request('idCategory') == $category->idCategory ? 'font-bold' : '' }}">
-                     {{ $category->nameCategory }}
-                     </a>
+                    <a href="{{ route('post.index', ['idCategory' => $category->idCategory]) }}"
+                        class="text-gray-800 dark:text-gray-200 {{ request('idCategory') == $category->idCategory ? 'font-bold' : '' }}">
+                        {{ $category->nameCategory }}
+                    </a>
                 @endforeach
             @endisset
         </nav>
@@ -29,26 +29,26 @@
         </a>
     </div>
     @isset($colPosts)
-    @foreach ($colPosts as $post)
-        <div class="text-white m-4">
-            <div class="bg-gray-800 rounded-lg shadow-lg">
-                <div class="bg-gray-700 px-4 py-2 rounded-t-lg">
-                    <h5 class="text-lg font-bold">{{ $post->titlePost }}</h5>
-                    <h6 class="text-sm font-bold">Posteado por:
-                        {{ $objProfileController->returnUser($post->idUserPoster) }}</h6>
-                </div>
-                <div class="p-4">
-                    <p class="text-base">{{ $post->contentPost }}</p>
-                </div>
-                <div class="bg-gray-700 px-4 py-2 rounded-b-lg">
-                    <div class="flex justify-between">
-                        <a href="{{ route('post.show', $post) }}"
-                            class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded">Ver
-                        </a>
+        @foreach ($colPosts as $post)
+            <div class="text-white m-4">
+                <div class="bg-gray-800 rounded-lg shadow-lg">
+                    <div class="bg-gray-700 px-4 py-2 rounded-t-lg">
+                        <h5 class="text-lg font-bold">{{ $post->titlePost }}</h5>
+                        <h6 class="text-sm font-bold">Posteado por:
+                            {{ $objProfileController->returnUser($post->idUserPoster) }}</h6>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-base">{{ $post->contentPost }}</p>
+                    </div>
+                    <div class="bg-gray-700 px-4 py-2 rounded-b-lg">
+                        <div class="flex justify-between">
+                            <a href="{{ route('post.show', $post) }}"
+                                class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded">Ver
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
     @endisset
 </x-app-layout>
