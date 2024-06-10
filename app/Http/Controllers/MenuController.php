@@ -32,6 +32,7 @@ class MenuController extends Controller
 
   /**
    * Muestra un formulario para editar un menu.
+   * Tambien busca todos los menus porque el menu puede tener padre.
    */
   public function edit($idMenu)
   {
@@ -39,6 +40,7 @@ class MenuController extends Controller
     $menu = Menu::findOrFail($idMenu);
     return view('menu.edit', compact('menu'), compact('menus'));
   }
+
   /**
    *  Muestra un menu.
    */
@@ -57,6 +59,12 @@ class MenuController extends Controller
       'nameMenu' => 'required|max:30',
       'urlMenu' => 'required|max:100',
       'order' => 'required',
+    ], [
+      'nameMenu.required' => 'El nombre del menú es obligatorio.',
+      'nameMenu.max' => 'El nombre del menú no puede tener mas de 30 carácteres.',
+      'urlMenu.required' => 'El url del menú es obligatorio.',
+      'urlMenu.max' => 'El url del menú no puede tener mas de 100 carácteres.',
+      'order.required' => 'El orden del menú es obligatorio.',
     ]);
     $menu = Menu::create($request->only(['nameMenu', 'urlMenu', 'order', 'parentId']));
 
@@ -79,11 +87,11 @@ class MenuController extends Controller
       'urlMenu' => 'required|max:100',
       'order' => 'required',
     ], [
-      'nameMenu.required' => 'El nombre del menu es obligatorio.',
-      'nameMenu.max' => 'El nombre del menu no puede tener mas de 30 caracteres.',
-      'urlMenu.required' => 'La url del menu es obligatoria.',
-      'urlMenu.max' => 'La url del menu no puede tener mas de 100 caracteres.',
-      'order.required' => 'El orden del menu es obligatorio.',
+      'nameMenu.required' => 'El nombre del menú es obligatorio.',
+      'nameMenu.max' => 'El nombre del menú no puede tener mas de 30 carácteres.',
+      'urlMenu.required' => 'El url del menú es obligatorio.',
+      'urlMenu.max' => 'El url del menú no puede tener mas de 100 carácteres.',
+      'order.required' => 'El orden del menú es obligatorio.',
     ]);
     $menu = Menu::find($menu->idMenu);
     $menu->update($request->only(['nameMenu', 'urlMenu', 'order', 'parentId']));

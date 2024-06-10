@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
   /**
-   * Display a listing of the resource.
+   * Muestra todas las categorias
    */
   public function index()
   {
@@ -17,7 +17,7 @@ class CategoryController extends Controller
   }
 
   /**
-   * Show the form for creating a new resource.
+   * Muestra el formulario para crear una nueva categoria.
    */
   public function create()
   {
@@ -25,7 +25,7 @@ class CategoryController extends Controller
   }
 
   /**
-   * Show the form for editing the specified resource.
+   * Muestra un formulario para editar una categoria y busca la categoria.
    */
   public function edit($id)
   {
@@ -34,7 +34,7 @@ class CategoryController extends Controller
   }
 
   /**
-   * Display the specified resource.
+   * Muestra una categoria.
    */
   public function show($id)
   {
@@ -43,12 +43,14 @@ class CategoryController extends Controller
   }
 
   /**
-   * Store a newly created resource in storage.
+   * Guarda una categoria en la BD.
    */
   public function store(Request $request)
   {
     $request->validate([
       'nameCategory' => 'required',
+    ], [
+      'nameCategory.required' => 'El nombre de categoría es obligatorio.',
     ]);
     Category::create($request->all());
     return redirect()->route('category.index')
@@ -56,41 +58,44 @@ class CategoryController extends Controller
   }
 
   /**
-   * Update the specified resource in storage.
+   * Edita los datos de una categoria.
    */
   public function update(Request $request, $id)
   {
     $request->validate([
       'nameCategory' => 'required|max:100',
+    ], [
+      'nameCategory.required' => 'El nombre de categoría es obligatorio.',
     ]);
     $category = Category::find($id);
     $category->update($request->all());
-    return redirect()->route('category.index')
-      ->with('success', 'Categoria actualizada con éxito.');
+    return redirect()->route('category.index')->with('success', 'Categoria actualizada con éxito.');
   }
 
   /**
-   * Remove the specified resource from storage.
+   * Hace un borrado logico.
    */
   public function destroy($id)
   {
     $category = Category::find($id);
     $category->habilitated = 0;
     $category->save();
-    return redirect()->route('category.index')
-      ->with('success', 'Categoria eliminada con éxito.');
+    return redirect()->route('category.index')->with('success', 'Categoria eliminada con éxito.');
   }
+
+  /**
+   * Hace una alta logica.
+   */
   public function alta($id)
   {
     $category = Category::find($id);
     $category->habilitated = 1;
     $category->save();
-    return redirect()->route('category.index')
-      ->with('success', 'Categoria eliminada con éxito.');
+    return redirect()->route('category.index')->with('success', 'Categoria eliminada con éxito.');
   }
 
   /**
-   * Devuelve todas las categorias habilitadas
+   * Devuelve todas las categorias habilitadas.
    */
   public function devolverCategorias()
   {

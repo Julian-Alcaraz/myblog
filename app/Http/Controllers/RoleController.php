@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class RoleController extends Controller
 {
   /**
-   * Muestra todos los roles.
+   * Muestra TODOS los roles.
    */
   public function index()
   {
@@ -49,6 +49,9 @@ class RoleController extends Controller
   {
     $request->validate([
       'nameRole' => 'required|max:20',
+    ], [
+      'nameRole.required' => 'El nombre del rol es obligatorio.',
+      'nameRole.max' => 'El nombre del rol no puede tener mas de 20 carácteres.',
     ]);
     Role::create($request->all());
     return redirect()->route('role.index')->with('success', 'Rol creado con éxito.');
@@ -61,6 +64,9 @@ class RoleController extends Controller
   {
     $request->validate([
       'nameRole' => 'required|max:20',
+    ], [
+      'nameRole.required' => 'El nombre del rol es obligatorio.',
+      'nameRole.max' => 'El nombre del rol no puede tener mas de 20 carácteres.',
     ]);
     $role = Role::find($id);
     $role->update($request->all());

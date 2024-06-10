@@ -23,7 +23,7 @@ class PostController extends Controller
   }
 
   /**
-   * Muestra el formulario para crear un nuevo post
+   * Muestra el formulario para crear un nuevo post.
    */
   public function create()
   {
@@ -33,7 +33,7 @@ class PostController extends Controller
   }
 
   /**
-   * Muestra un formulario para editar un post y busca el Post
+   * Muestra un formulario para editar un post y busca el Post.
    */
   public function edit(Post $post)
   {
@@ -106,7 +106,7 @@ class PostController extends Controller
   }
 
   /**
-   * Verifica si el usuario es dueño del post
+   * Verifica si el usuario es dueño de un post.
    */
   public function esUserDuenioPost($userId, $idUserPoster)
   {
