@@ -2,26 +2,27 @@
 
 ![Logo de la App](./public/img/logoGrupo.png)
 
-Esta es una aplicacion web desarrollada en React donde fue diseañada una home page
-que va a mostrar varias cards con informacion de autos (la cual es sacada de un archivo .json),
-luego se puede seleccionar una para mostrar mas detalles del auto.
+Esta es una aplicacion web desarrollada en Laravel donde se diseño
+un blog con una pagina principal donde se pueden ver los blogs sin estar loggeado,
+y se puede iniciar sesion o registrarse para crear un post. Ademas de eso la aplicacion cuenta
+con todos los abm para la gestion del sistema desde el rol de administrador.
 
-Fue diseñado como Trabajo practico numero 2 de la materia
+Fue diseñado como Trabajo practico numero 3 de la materia
 "Programacion Web Avanzada" de la carrera universitaria en
 desarrollo web, en la facultad nacional del comahue (UNCO).
 
 ## Vista de Post
 
-![Captura de home 1](./src/assets/home1.jpg)
-![Captura de home 2](./src/assets/home2.jpg)
+![Captura de home 1](./public/img/home1.png)
+![Captura de home 2](./public/img/home2.png)
 
 ## Vista de crear nuevo Post
 
-![Captura de detalles](./src/assets/detalles1.jpg)
+![Captura de crear post](./public/img/crearpost.png)
 
 ## Vista de editar Post
 
-img
+![Captura de editar post](./public/img/editarpost.png)
 
 ## Instalación
 1. Instala Node.js
