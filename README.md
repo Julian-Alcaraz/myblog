@@ -45,7 +45,7 @@ desarrollo web, en la facultad nacional del comahue (UNCO).
 
 7. Modificar el archivo .env.example, cambiar el nombre del archivo y dejarlo de la siguiente manera ".env".
 
-8. Generar uns key.
+8. Generar una key.
     - Utilizar el comando ```php artisan key:generate```.
 
 9. Realizar las migraciones y poblar la base de datos.
