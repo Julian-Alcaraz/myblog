@@ -43,15 +43,20 @@ desarrollo web, en la facultad nacional del comahue (UNCO).
     - Utiliza el comando ```npm install``` para que se instalen las dependencias requeridas del proyecto.
     - Y el comando ```composer install```.
 
-7. Realizar las migraciones y poblar la base de datos.
+7. Modificar el archivo .env.example, cambiar el nombre del archivo y dejarlo de la siguiente manera ".env".
+
+8. Generar uns key.
+    - Utilizar el comando ```php artisan key:generate```.
+
+9. Realizar las migraciones y poblar la base de datos.
     - Utiliza el comando ```php artisan migrate``` para crear la DATABASE y ejecutar las migraciones.
     - Poblamos la base de datos con ```php artisan db:seed```.
 
-8. Iniciar la app.
+10. Iniciar la app.
     - Utiliza el comando ```npm run dev``` para iniciar vite.
     - Ademas el comando ```php artisan serve```.
 
-9. Para cerrar la app.
+11. Para cerrar la app.
     - Toca la tecla ctrl + c y luego la tecla "s".
 
 ## Miembros del Grupo
